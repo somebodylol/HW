@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'dart:math';
 
@@ -7,7 +6,6 @@ void main() {
   // print(compareBinary(0, 0, 100, 0));
   mas();
   stage4();
-
 }
 
 int stage1() {
@@ -149,28 +147,44 @@ void stage4() {
   int computerWin = 0;
   int userWin = 0;
   print(a);
-  
+
   a > 10 || a < 0 ? print('Вы ввели неправильное значение') : print("");
 
-  for (int i = 0; i < a; i++) {
-    int user = stage1();
-    int comp = stage3();
-    if (user > comp) {
-      print('Компьютер победил в $i раунде');
-      computerWin++;
-    } else if (user < comp) {
-      print('Вы победили в $i раунде');
-      userWin++;
+  stdout.write('Выберите уровень сложности:\n1.Высокий\n2.Низкий\n');
+  int lvl = int.parse(stdin.readLineSync()!);
+  
+  if (lvl == 1) {
+    stage1();
+  } else if (lvl == 2) {
+    stage3();
+  } else {
+    print('Введите 1 либо 2');
+  }
+
+  a > 10 || a < 0 ? print('Вы ввели неправильное значение') : print("");
+  
+    for (int i = 0; i < a; i++) {
+      int user = stage1();
+      int comp = stage3();
+
+      if (user > comp) {
+        print('Компьютер победил в ${i + 1} раунде');
+        computerWin++;
+      } else if (user < comp) {
+        print('====================');
+        print('Вы победили в ${i + 1} раунде');
+        print('====================');
+        userWin++;
+      } else {
+        print('Ничья');
+      }
+    }
+    if (computerWin > userWin) {
+      print('Компьютер выиграл');
+    } else if (userWin > computerWin) {
+      print('Пользователь выиграл');
     } else {
       print('Ничья');
     }
   }
-  if (computerWin > userWin) {
-    print('Компьютер выиграл');
-  } else if (userWin > computerWin) {
-    print('Пользователь выиграл');
-  } else {
-    print('Ничья');
-  }
-}
 
